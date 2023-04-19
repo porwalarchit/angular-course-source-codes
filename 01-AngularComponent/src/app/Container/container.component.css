@@ -1,0 +1,10 @@
+.wrapper{
+    margin: 0px auto;
+    width: 820px;
+}
+.search-filter{
+    display: flex;
+    margin: 15px 0px;
+    padding: 5px 5px;
+    border-radius: 5px;
+}
