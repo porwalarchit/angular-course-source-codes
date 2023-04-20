@@ -1,1 +1,8 @@
-<app-demo></app-demo>
+<!-- <app-demo></app-demo> -->
+<app-customer-list #customer></app-customer-list>
+
+<!-- In the below code, we have used 
+    '?'- which is a NULL Equalizing Operator. 
+    If we will not use it then the content on the webpage shown will be none. 
+-->
+<p>You have selected: {{customer.selectedCustomer?.name}}</p>

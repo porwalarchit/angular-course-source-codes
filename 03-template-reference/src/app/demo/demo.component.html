@@ -1,2 +1,7 @@
-<input type="text" #myVariable>
-<p></p>
+<input type="text" #myVariable (keyup)="0">
+
+<button (click)="sayHello(myVariable)">
+    Press me to see whatever you have written in input as a alert!!
+</button>
+
+<p>{{myVariable.value}}</p>

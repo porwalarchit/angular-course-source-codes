@@ -12,4 +12,8 @@ export class DemoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  sayHello(inputElement: HTMLInputElement){
+    alert('Hello ' + inputElement.value)
+    // console.log(inputElement)
+  }
 }
