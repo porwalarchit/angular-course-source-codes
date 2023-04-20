@@ -1,0 +1,14 @@
+<div>
+  <label >DOB: </label>
+  <input type="date" #dobInput (blur)="calculateAge()">
+</div>
+
+<div>
+  <label>Age: </label>
+  <input type="text" #ageInput>
+</div>
+
+<app-demo></app-demo>
+<h2>CHECK CONSOLE!!!</h2>
+<p>"Hello from demo component class!!" is coming from another component i.e. 'demo'</p>
+{{demoComp.sayHello()}}
