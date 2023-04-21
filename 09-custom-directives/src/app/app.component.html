@@ -10,7 +10,8 @@
 </div>
 
 
-<div class="container" appBetterHighlight>
+<div class="container" [appBetterHighlight]="'red'" [defaultColor]="'yellow'"> <!-- [highlightColor]="'red'" -->
   <p>This is a demo HTML content to understand @HostBinding in Angular.</p>
 </div>
 <!-- setBackground -> create a custom directive-->
+
