@@ -6,6 +6,7 @@ import { setBackgroundDirective } from './CustomDirective/setbackground.directiv
 import { HighlightDirective } from './highlight.directive';
 import { HoverDirective } from './CustomDirective/hover.directive';
 import { BetterHighlightDirective } from './CustomDirective/better-highlight.directive';
+import { ClassDirective } from './CustomDirective/class.directive';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { BetterHighlightDirective } from './CustomDirective/better-highlight.dir
     setBackgroundDirective,
     HighlightDirective,
     HoverDirective,
-    BetterHighlightDirective
+    BetterHighlightDirective,
+    ClassDirective
   ],
   imports: [
     BrowserModule
