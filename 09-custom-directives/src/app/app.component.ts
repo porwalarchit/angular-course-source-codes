@@ -12,6 +12,9 @@ export class AppComponent {
 
   display: boolean = false;
 
+  occupation: string = 'designer';
+teacher: any;
+
   displayNotice(){
     this.display = true;
   }

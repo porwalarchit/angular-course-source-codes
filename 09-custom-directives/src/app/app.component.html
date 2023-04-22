@@ -43,3 +43,12 @@
 <ng-template #myVar>
   <p class="container info-container">This is the paragraph representing else statement.</p>
 </ng-template> -->
+
+
+<!-- [ngSwitch] directive example -->
+<div class="container" [ngSwitch]="occupation">
+  <p *ngSwitchCase="'teacher'">This paragraph will be displayed when occupation is teacher.</p>
+  <p *ngSwitchCase="'designer'">This paragraph will be displayed when occupation is designer.</p>
+  <p *ngSwitchCase="'lawyer'">This paragraph will be displayed when occupation is lawyer.</p>
+  <p *ngSwitchDefault>This paragraph is default and will be displayed if no case matches switch expression.</p>
+</div>
