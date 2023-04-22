@@ -22,3 +22,24 @@
 <div class="container" [appStyle]="{backgroundColor: active ? 'Green' : 'Red', color: 'white'}">
   <p>This is a demo HTML content to understand how to create custom ngStyle directive in Angular.</p>
 </div>
+
+<button class="btn btn-notice" (click)="displayNotice()">Show Notice</button>
+<!-- <div class="container info-container notice" *ngIf="display; else myVar">
+  <h3>This is Important Notice!!</h3>
+  <p>This is a notice issued for all website users.</p>
+</div>
+<ng-template #myVar>
+  <p class="container info-container">This is the paragraph representing else statement.</p>
+</ng-template> -->
+
+
+<!-- This is the another way of creating a structural directive along with how to use 'Else' statement in <ng-template> -->
+<ng-template [ngIf]="display" [ngIfElse]="myVar">
+  <div class="container info-container notice" >
+    <h3>This is Important Notice!!</h3>
+    <p>This is a notice issued for all website users.</p>
+  </div>
+</ng-template>
+<ng-template #myVar>
+  <p class="container info-container">This is the paragraph representing else statement.</p>
+</ng-template>
