@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { JavascriptComponent } from './javascript/javascript.component';
 import { AngularComponent } from './angular/angular.component';
+import { EnrollService } from './services/enroll.service';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { AngularComponent } from './angular/angular.component';
   imports: [
     BrowserModule
   ],
+  providers: [EnrollService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
