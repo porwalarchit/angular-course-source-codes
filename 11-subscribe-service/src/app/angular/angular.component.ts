@@ -7,8 +7,4 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AngularComponent{
   title="Angular";
-
-  OnEnroll(){
-    alert("Thanks for enrolling to " + this.title + ' course.');
-  }
 }

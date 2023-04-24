@@ -8,7 +8,4 @@ import { Component, OnInit } from '@angular/core';
 export class JavascriptComponent{
   title = "JavaScript";
   
-  OnEnroll(){
-    alert("Thanks for enrolling to " + this.title + ' course.');
-  }
 }
