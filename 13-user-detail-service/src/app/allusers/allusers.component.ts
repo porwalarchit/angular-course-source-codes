@@ -16,4 +16,7 @@ export class AllusersComponent implements OnInit {
     this.users = this.userService.users;
   }
 
+  ShowDetails(user:  {name: string, job: string, gender: string, country: string, age: number, avatar: string}){
+    this.userService.ShowUserDetails(user);
+  }
 }
