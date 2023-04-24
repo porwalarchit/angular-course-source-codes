@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { AdduserComponent } from './adduser/adduser.component';
+import { LoggerService } from './Services/logger.service';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { AdduserComponent } from './adduser/adduser.component';
     BrowserModule,
     FormsModule
   ],
+  providers: [LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

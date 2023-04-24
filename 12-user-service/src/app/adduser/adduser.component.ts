@@ -18,6 +18,6 @@ export class AdduserComponent implements OnInit {
 
   AddUser(){
     this.userService.AddNewUser(this.username, this.status);
-    console.log(this.userService.users);
+    // console.log(this.userService.users);
   }
 }
