@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-about',
@@ -6,10 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
+  
+  constructor(private route: Router, private activatedRoute: ActivatedRoute){
 
-  constructor() { }
-
-  ngOnInit(): void {
   }
 
+  ngOnInit(){
+
+  }
+
+  navigateToHome(){
+    // this.route.navigate(['home']); // Absolute routing: http://localhost:4200/home
+
+    // this.route.navigate(['home'], {relativeTo: this.activatedRoute}); // Relative routing: http://localhost:4200/about/home
+    
+    this.route.navigateByUrl('home'); // Absolute routing: http://localhost:4200/home
+  }
 }
