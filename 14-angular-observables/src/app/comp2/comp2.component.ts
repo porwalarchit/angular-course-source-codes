@@ -10,12 +10,12 @@ export class Comp2Component {
   constructor(private dataService: DataService){ 
   
   }
-
+  
   ngOnInit(){
     this.dataService.dataEmitter.subscribe((val)=>{
       this.inputText = val;
     });
   }
-
+  
   inputText: string = '';
 }
