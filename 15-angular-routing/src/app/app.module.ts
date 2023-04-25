@@ -10,13 +10,13 @@ import { CoursesComponent } from './courses/courses.component';
 import { CoursesService } from './Services/courses.service';
 import { CourseComponent } from './courses/course/course.component';
 
-
-const appRoutes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'Home', component: HomeComponent},
+const appRoute: Routes = [
+  // {path: '', component: HomeComponent},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
   {path: 'About', component: AboutComponent},
-  {path: 'Contact', component: ContactComponent},
-  {path: 'Courses', component: CoursesComponent}
+  {path: 'contact', component: ContactComponent},
+  {path: 'courses', component: CoursesComponent},
 ]
 
 @NgModule({
@@ -30,7 +30,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoute)
   ],
   providers: [CoursesService],
   bootstrap: [AppComponent]
