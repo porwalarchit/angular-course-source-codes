@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, from, of } from 'rxjs';
+import { Observable, Subscription, from, interval, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { DataService } from './data.service';
 
@@ -63,13 +63,13 @@ export class AppComponent implements OnInit {
   // myObservable = of(this.array1, this.array2, 20, 48.24, "Hello");
 
   // WAY 4- USING FROM operator.
-  myObservable = from(this.array1)
-  .pipe(map((val) => {
-    return val * 5;
-  }), filter((val)=>{
-    return val>10;
-  })
-  );
+  // myObservable = from(this.array1)
+  // .pipe(map((val) => {
+  //   return val * 5;
+  // }), filter((val)=>{
+  //   return val>10;
+  // })
+  // );
 
   // Returns values multiplied by 5.
   // multiplieddata = this.myObservable.pipe(map((val) => {
@@ -81,13 +81,28 @@ export class AppComponent implements OnInit {
   //   return val>10;
   // }))
 
+  counterObservable = interval(1000);
+  counterSub: Subscription = new Subscription;
+
   ngOnInit() {
-    this.myObservable.subscribe((val) => {
+    // this.myObservable.subscribe((val) => {
+    //   console.log(val);
+    // }, (error) => {
+    //   console.log(error.message);
+    // }, () => {
+    //   console.log("Observables has completed emitting all values.")
+    // });
+  }
+
+  unsubscribe(){
+    this.counterSub.unsubscribe();
+    console.log("Successfully unsubscribed from the event.");
+  }
+
+  subscribe(){
+    console.log("Successfully subscribed for the event ")
+    this.counterSub = this.counterObservable.subscribe((val)=>{
       console.log(val);
-    }, (error) => {
-      console.log(error.message);
-    }, () => {
-      console.log("Observables has completed emitting all values.")
-    });
+    })
   }
 }
