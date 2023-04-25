@@ -1,14 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, from, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [DataService]
 })
 export class AppComponent implements OnInit {
   title = 'angular-observables';
+
+  constructor(private dataService: DataService){
+
+  }
 
   // WAY 1- Using Observable Constructor.
   // myObservable = new Observable((observer)=>{
