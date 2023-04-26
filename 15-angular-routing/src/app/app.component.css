@@ -3,7 +3,7 @@
     margin: 10px auto;
 }
 .nav-container{
-  position: fixed ;
+  position: relative ;
   width: 960px;
 }
 
