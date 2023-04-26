@@ -3,7 +3,10 @@
         <img src="{{course.image}}" width="560" height="280">
     </div>
     <div>
-        <h1 style="text-align: center;">{{course.name}}</h1>
+        <h1 style="text-align: center;" *ngIf="!editMode">{{course.name}}</h1>
+        <div style="text-align: center;" *ngIf="editMode">
+            <input type="text" style="padding: 6px 114px; margin-top: 5px; text-align: center;" [(ngModel)]="course.name">
+        </div>
     </div>
     <div class="course-details">
         <div style="margin: 0px 10px;"><b>Author: </b>{{course.author}}</div>
@@ -18,5 +21,11 @@
     </div>
 
     <!-- This will not change the content of the webpage, if we are using the snapshot property. -->
-    <a [routerLink]="['/courses/course', 101]">Goto first course</a>
+    <!-- <a [routerLink]="['/courses/course', 101]">Goto first course</a> -->
+
+    <!-- Pass query parameter to a route. -->
+    <!-- <button [routerLink]="['/courses/course', course.id]" [queryParams]="{editMode: true}">Edit</button> -->
+
+    <button (click)="appendQueryParam()">Edit</button>
+    <button (click)="editMode=false" [routerLink]="['/courses/course', course.id]">Update</button>
 </div>
