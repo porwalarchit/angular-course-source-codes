@@ -16,4 +16,7 @@
     <div style="margin: 20px 10px;">
         <p>{{course.description}}</p>
     </div>
+
+    <!-- This will not change the content of the webpage, if we are using the snapshot property. -->
+    <a [routerLink]="['/courses/course', 101]">Goto first course</a>
 </div>
