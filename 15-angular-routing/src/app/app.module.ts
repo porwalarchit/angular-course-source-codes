@@ -13,8 +13,8 @@ import { ErrorComponent } from './error/error.component';
 import { FormsModule } from '@angular/forms';
 
 const appRoute: Routes = [
-  // {path: '', component: HomeComponent},
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: '', component: HomeComponent},
+  // {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'about', component: AboutComponent},
   {path: 'contact', component: ContactComponent},

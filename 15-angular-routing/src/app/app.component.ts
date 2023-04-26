@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AngularRouting';
+
+  constructor(private activatedRoute: ActivatedRoute){
+
+  }
+
+  ngOnInit(){
+    this.activatedRoute.fragment.subscribe((value)=>{
+      this.jumpTo(value);
+    })
+  }
+
+  jumpTo(section){
+    document.getElementById(section).scrollIntoView({behavior: 'smooth'});
+  }
 }
