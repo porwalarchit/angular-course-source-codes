@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -11,20 +10,8 @@ import { CoursesService } from './Services/courses.service';
 import { CourseComponent } from './courses/course/course.component';
 import { ErrorComponent } from './error/error.component';
 import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
 
-const appRoute: Routes = [
-  {path: '', component: HomeComponent},
-  // {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
-  {path: 'about', component: AboutComponent},
-  {path: 'contact', component: ContactComponent},
-  {path: 'courses', component: CoursesComponent},
-  // {path: 'courses/course/:id', component: CourseComponent},
-  {path: 'courses', children: [
-    {path: 'course/:id', component: CourseComponent}
-  ]},
-  {path: '**', component: ErrorComponent}
-]
 
 @NgModule({
   declarations: [
@@ -38,8 +25,8 @@ const appRoute: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoute),
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [CoursesService],
   bootstrap: [AppComponent]
