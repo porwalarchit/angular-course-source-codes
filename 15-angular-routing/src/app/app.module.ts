@@ -11,6 +11,8 @@ import { CourseComponent } from './courses/course/course.component';
 import { ErrorComponent } from './error/error.component';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { CourseGuardService } from './course-guard.service';
+import { AuthService } from './auth.service';
 
 
 @NgModule({
@@ -28,7 +30,7 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [CoursesService],
+  providers: [CoursesService, CourseGuardService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

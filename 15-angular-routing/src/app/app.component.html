@@ -10,6 +10,11 @@
             <li routerLinkActive="active"><a routerLink="" fragment="about">About</a></li>
             <li routerLinkActive="active"><a routerLink="" fragment="contact">Contact</a></li>
             <li routerLinkActive="active"><a routerLink="" fragment="courses">Courses</a></li> -->
+
+            <span style="float: right">
+                <li (click)="login()"><a>Login</a></li>
+                <li><a (click)="logout()">Logout</a></li>
+            </span>
         </ul>
     </div>
     <div class="component-container">
