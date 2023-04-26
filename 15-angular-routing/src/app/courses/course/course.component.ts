@@ -11,6 +11,7 @@ export class CourseComponent implements OnInit {
 
   course;
   courseId;
+  routeparamObservable;
 
   constructor(private activatedRoute: ActivatedRoute, private service: CoursesService) { }
 
@@ -20,10 +21,14 @@ export class CourseComponent implements OnInit {
   //   // Old Approach
   //   // this.courseId = this.activatedRoute.snapshot.params['id'];
   //   this.course = this.service.courses.find(x => x.id == this.courseId);
-    this.activatedRoute.paramMap.subscribe((param)=>{
+    this.routeparamObservable = this.activatedRoute.paramMap.subscribe((param)=>{
       this.courseId = param.get('id');
       this.course = this.service.courses.find(x => x.id == this.courseId);
     })
+  }
+
+  ngOnDestroy(){
+    this.routeparamObservable.unsubscribe();
   }
 
 }
