@@ -21,4 +21,15 @@ export class AppComponent implements OnInit{
     this.students = this.studentService.students;
     this.totalMarks = this.studentService.totalMarks;
   }
+
+  AddDummyStudent(){
+    let studentCopy = Object.assign([], this.students);
+    studentCopy.push({name:'TEST', course: 'TEST', marks: 520, DOB: new Date(), gender: 'female'});
+    this.students = studentCopy
+  }
+  changeGender(){
+    let studentCopy = Object.assign([], this.students);
+    studentCopy[0].gender = 'female';
+    this.students = studentCopy;
+  }
 }
