@@ -9,6 +9,7 @@ import { AuthService } from './auth.service';
 })
 export class AppComponent {
   title = 'AngularRouting';
+  displayLoadingIndicator = true;
 
   constructor(private activatedRoute: ActivatedRoute, private authService: AuthService){
 
