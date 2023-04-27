@@ -6,10 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
+  firstName;
+  lastName;
+  country;
+  subject;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  canExit(){
+    if(this.firstName || this.lastName || this.country || this.subject){
+      return confirm('You have unsaved changes. Do you really want to discard these changes?');
+    }
+    else{
+      return true;
+    }
+  }
 }
