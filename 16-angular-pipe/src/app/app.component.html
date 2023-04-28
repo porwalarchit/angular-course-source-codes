@@ -14,7 +14,7 @@
       <th>DOB</th>
       <th>Gender</th>
     </tr>
-      <tr *ngFor="let std of students | filterStudent: filterText">
+      <tr *ngFor="let std of filteredStudents" >
         <td>{{std.name}}</td>
         <td>{{std.course}}</td>
         <td><input type="number" value="std.marks" [(ngModel)]="std.marks"></td>
