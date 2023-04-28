@@ -14,6 +14,11 @@ export class AppComponent implements OnInit {
   totalMarks: number;
   _filterText: string = ''
   filteredStudents: Student[];
+  totalStudents = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+      resolve(this.filteredStudents.length)
+    }, 2000)
+  });
 
   get filterText() {
     return this._filterText;
