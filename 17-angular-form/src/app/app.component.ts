@@ -12,7 +12,7 @@ export class AppComponent {
   firstname: string;
   lastname: string;
   defaultGender: 'Female';
-  
+
   gender = [
     { id: '1', value: 'Male' },
     { id: '2', value: 'Female' },
@@ -23,5 +23,28 @@ export class AppComponent {
 
   onSubmit() {
     console.log(this.form);
+  }
+
+  setDefaultValues() {
+    // pass the exact structure of form object and form group to setValue method.
+    // this.form.setValue({
+    //   country: '',
+    //   gender: '',
+    //   hobbies: '',
+    //   personDetails: {
+    //     firstname: 'Archit',
+    //     lastname: 'Porwal',
+    //     email: 'architporwal@gmail.com'
+    //   }
+    // });
+
+    // use patchValue when we want to set value for some of the form controls.
+    this.form.form.patchValue({
+      personDetails: {
+        firstname: 'Archit',
+        lastname: 'Porwal',
+        email: 'architporwal@gmail.com'
+      }
+    })
   }
 }

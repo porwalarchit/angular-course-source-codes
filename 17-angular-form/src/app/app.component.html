@@ -2,7 +2,7 @@
   <h2 id="registration">Registration Form</h2>
   <form (ngSubmit)="onSubmit()" #myForm="ngForm">
 
-    <div ngModelGroup="personDetails" #personalDetail="ngModelGroup">
+    <div ngModelGroup="personDetails" #personDetails="ngModelGroup">
       <label for="fname">First Name</label>
       <input type="text" id="fname" placeholder="Your name.." name="firstname" ngModel required #fname="ngModel">
       <!-- <div>
@@ -20,8 +20,9 @@
       <input type="email" id="email" name="email" placeholder="Your last email.." name="email" ngModel required email>
 
       <div>
-        <small *ngIf="personalDetail.invalid && personalDetail.touched">Some of the required fields does not have valid value.</small>
+        <small *ngIf="personDetails.invalid && personDetails.touched">Some of the required fields does not have valid value.</small>
       </div>
+      <button (click)="setDefaultValues()">Set Default Values</button>
     </div>
 
     <label for="country">Country</label>
