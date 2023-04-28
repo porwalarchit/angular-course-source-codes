@@ -12,6 +12,9 @@ export class AppComponent {
   firstname: string;
   lastname: string;
   defaultGender: 'Female';
+  email:string;
+  gen: string;
+  country: string
 
   gender = [
     { id: '1', value: 'Male' },
@@ -23,6 +26,15 @@ export class AppComponent {
 
   onSubmit() {
     console.log(this.form);
+
+    this.firstname = this.form.value.personDetails.firstname;
+    this.lastname = this.form.value.personDetails.lastname;
+    this.email = this.form.value.personDetails.email;
+    this.gen = this.form.value.gender;
+    this.country = this.form.value.country;
+
+    // Resets the form state.
+    this.form.reset();
   }
 
   setDefaultValues() {
