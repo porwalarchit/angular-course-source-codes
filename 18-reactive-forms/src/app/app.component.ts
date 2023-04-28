@@ -13,9 +13,11 @@ export class AppComponent {
 
   ngOnInit(){
     this.reactiveForm = new FormGroup({
-      firstname: new FormControl(null, Validators.required),
-      lastname: new FormControl(null, Validators.required),
-      email: new FormControl(null, [Validators.required, Validators.email]),
+      personalDetails:new FormGroup({
+        firstname: new FormControl(null, Validators.required),
+        lastname: new FormControl(null, Validators.required),
+        email: new FormControl(null, [Validators.required, Validators.email] ),
+      }),
       gender: new FormControl('male'),
       country: new FormControl('USA'),
       hobbies: new FormControl(null)
