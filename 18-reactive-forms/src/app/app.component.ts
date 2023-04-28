@@ -36,14 +36,47 @@ export class AppComponent {
     //   console.log(value);
     // })
 
-    this.reactiveForm.statusChanges.subscribe((value)=>{
+    this.reactiveForm.statusChanges.subscribe((value) => {
       console.log(value);
       this.formStatus = value;
     })
+
+    // setTimeout(()=>{
+    //   this.reactiveForm.setValue({
+    //     personalDetails: {
+    //       firstname: '',
+    //       lastname: '',
+    //       email: 'architporwal@gmail.com'
+    //     },
+    //     gender: '',
+    //     country: '',
+    //     hobbies: '',
+    //     skills: []
+    //   })
+    // }, 3000)
+
+    setTimeout(() => {
+      this.reactiveForm.patchValue({
+        personalDetails: {
+          email: 'architporwal@gmail.com'
+        }
+      })
+    }, 3000)
   }
 
   onSubmit() {
     console.log(this.reactiveForm);
+    this.reactiveForm.reset({
+      personalDetails: {
+        firstname: '',
+        lastname: '',
+        email: ''
+      },
+      gender: 'male',
+      country: 'India',
+      hobbies: '',
+      skills: []
+    });
   }
 
   addSkills() {
@@ -51,18 +84,18 @@ export class AppComponent {
   }
 
   noSpaceAllowed(control: FormControl) {
-    if (control.value != null && control.value.indexOf(' ') != -1){
-      return {noSpaceAllowed: true}
+    if (control.value != null && control.value.indexOf(' ') != -1) {
+      return { noSpaceAllowed: true }
     }
     return null;
   }
 
-  emailNotAllowed(control: FormControl): Promise<any> | Observable<any>{
-    const response = new Promise((resolve, reject)=>{
-      setTimeout(()=>{
-        if(control.value === 'proacademy@gmail.com'){
-          resolve({emailNotAllowed: true})
-        } else{
+  emailNotAllowed(control: FormControl): Promise<any> | Observable<any> {
+    const response = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (control.value === 'proacademy@gmail.com') {
+          resolve({ emailNotAllowed: true })
+        } else {
           resolve(null)
         }
       }, 5000)
