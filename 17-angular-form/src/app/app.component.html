@@ -2,16 +2,19 @@
   <h2 id="registration">Registration Form</h2>
   <form (ngSubmit)="onSubmit()" #myForm="ngForm">
     <label for="fname">First Name</label>
-    <input type="text" id="fname" placeholder="Your name.." name="firstname">
+    <input type="text" id="fname" placeholder="Your name.." name="firstname" ngModel required #fname="ngModel">
+    <div>
+      <small *ngIf="fname.invalid && fname.touched">First Name is a required field.</small>
+    </div>
 
     <label for="lname">Last Name</label>
-    <input type="text" id="lname" placeholder="Your last name.." name="lastname">
+    <input type="text" id="lname" placeholder="Your last name.." name="lastname" ngModel required>
 
     <label for="email">Email</label>
-    <input type="email" id="email" name="email" placeholder="Your last email.." name="email">
+    <input type="email" id="email" name="email" placeholder="Your last email.." name="email" ngModel required email>
 
     <label for="country">Country</label>
-    <select id="country" name="country">
+    <select id="country" name="country" [ngModel]="defaultCountry">
       <option value="australia">Australia</option>
       <option value="canada">Canada</option>
       <option value="usa">USA</option>
@@ -20,21 +23,21 @@
     </select>
 
     <label for="gender">Gender:</label>
-    <input type="radio" id="id" value="male" name="gender">
+    <input type="radio" id="id" value="male" name="gender" ngModel>
     <label for="male">Male</label>
-    <input type="radio" id="id" value="female" name="gender">
+    <input type="radio" id="id" value="female" name="gender" ngModel>
     <label for="female">Female</label>
-    <input type="radio" id="id" value="other" name="gender" checked>
+    <input type="radio" id="id" value="other" name="gender" ngModel>
     <label for="other">Other</label>
     <br><br>
 
     <label>Hobbies <i>(Optional)</i></label>
     <div class="form-inline">
-      <label><input type="checkbox" value="sports"> Sports</label>
-      <label><input type="checkbox" value="movies"> Movies</label>
-      <label><input type="checkbox" value="music"> Music</label>
+      <label><input type="checkbox" value="sports" ngModel> Sports</label>
+      <label><input type="checkbox" value="movies" ngModel> Movies</label>
+      <label><input type="checkbox" value="music" ngModel> Music</label>
     </div>
 
-    <input type="submit" value="Submit" id="btn">
+    <input type="submit" value="Submit" id="btn" [disabled]="!myForm.valid">
   </form>
 </div>
