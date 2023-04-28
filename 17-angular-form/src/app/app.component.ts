@@ -8,5 +8,9 @@ import { NgForm } from '@angular/forms';
 })
 export class AppComponent {
   title = 'AngularForms';
+  @ViewChild('myForm')form: NgForm;
   
+  onSubmit(){
+    console.log(this.form);
+  }
 }
