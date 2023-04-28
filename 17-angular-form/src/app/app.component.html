@@ -1,22 +1,27 @@
 <div class="form">
   <h2 id="registration">Registration Form</h2>
   <form (ngSubmit)="onSubmit()" #myForm="ngForm">
-    <label for="fname">First Name</label>
-    <input type="text" id="fname" placeholder="Your name.." name="firstname" ngModel required #fname="ngModel">
-    <div>
-      <small *ngIf="fname.invalid && fname.touched">First Name is a required field.</small>
+    <div ngModelGroup ='personalDetails' #personalDetails="ngModelGroup">
+      <label for="fname">First Name</label>
+      <input type="text" id="fname" placeholder="Your name.." name="firstname" ngModel required #fname="ngModel">
+      <!-- <div>
+        <small *ngIf="fname.invalid && fname.touched">First Name is a required field.</small>
+      </div> -->
+
+      <label for="lname">Last Name</label>
+      <input type="text" id="lname" placeholder="Your last name.." name="lastname" ngModel required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Your last email.." name="email" ngModel required email>
     </div>
-
-    <label for="lname">Last Name</label>
-    <input type="text" id="lname" placeholder="Your last name.." name="lastname" ngModel required>
-
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" placeholder="Your last email.." name="email" ngModel required email>
+    <div>
+      <small *ngIf="personalDetails.invalid">Some of the required field does not have valid value.</small>
+    </div>
 
     <label for="country">Country</label>
     <select id="country" name="country" [ngModel]="defaultCountry">
       <option value="australia">Australia</option>
-      <option value="canada">Canada</option>
+      <option value="canada">Canada</option>`
       <option value="usa">USA</option>
       <option value="india">India</option>
       <option value="uk">UK</option>
@@ -38,6 +43,7 @@
       <label><input type="checkbox" value="music" ngModel> Music</label>
     </div>
 
-    <input type="submit" value="Submit" id="btn" [disabled]="!myForm.valid">
+    <input type="submit" value="Submit" id="btn" > 
+    <!-- [disabled]="!myForm.valid" -->
   </form>
 </div>
