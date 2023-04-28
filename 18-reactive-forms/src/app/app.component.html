@@ -1,4 +1,4 @@
-<div class="form">
+<div class="form myForm" [ngClass]="formStatus">
   <h2 id="registration">Registration Form</h2>
   <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
 
@@ -8,7 +8,7 @@
 
       <div>
         <small *ngIf="reactiveForm.get('personalDetails.firstname').errors?.['required']">First name is a required field.</small>
-        <small *ngIf="reactiveForm.get('personalDetails.firstname').errors['noSpaceAllowed']">First name cannot contain a space.</small>
+        <small *ngIf="reactiveForm.get('personalDetails.firstname').errors?.['noSpaceAllowed']">First name cannot contain a space.</small>
       </div>
   
       <label for="lname">Last Name</label>

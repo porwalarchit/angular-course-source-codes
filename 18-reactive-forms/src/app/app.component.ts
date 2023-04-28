@@ -11,6 +11,7 @@ export class AppComponent {
   title = 'reactive-forms';
 
   reactiveForm: FormGroup;
+  formStatus;
 
   ngOnInit() {
     this.reactiveForm = new FormGroup({
@@ -26,6 +27,19 @@ export class AppComponent {
         new FormControl(null, Validators.required)
       ])
     });
+
+    // this.reactiveForm.get('personalDetails.firstname').valueChanges.subscribe((value)=>{
+    //   console.log(value);
+    // })
+
+    // this.reactiveForm.valueChanges.subscribe((value)=>{
+    //   console.log(value);
+    // })
+
+    this.reactiveForm.statusChanges.subscribe((value)=>{
+      console.log(value);
+      this.formStatus = value;
+    })
   }
 
   onSubmit() {
