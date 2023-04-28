@@ -14,8 +14,8 @@ export class AppComponent {
   ngOnInit() {
     this.reactiveForm = new FormGroup({
       personalDetails: new FormGroup({
-        firstname: new FormControl(null, Validators.required),
-        lastname: new FormControl(null, Validators.required),
+        firstname: new FormControl(null, [Validators.required, this.noSpaceAllowed]),
+        lastname: new FormControl(null, [Validators.required, this.noSpaceAllowed]),
         email: new FormControl(null, [Validators.required, Validators.email]),
       }),
       gender: new FormControl('male'),
@@ -31,7 +31,14 @@ export class AppComponent {
     console.log(this.reactiveForm);
   }
 
-  addSkills(){
+  addSkills() {
     (<FormArray>this.reactiveForm.get('skills')).push(new FormControl(null, Validators.required))
+  }
+
+  noSpaceAllowed(control: FormControl) {
+    if (control.value != null && control.value.indexOf(' ') != -1){
+      return {noSpaceAllowed: true}
+    }
+    return null;
   }
 }
