@@ -12,6 +12,7 @@ import { Product } from './model/products';
 export default class AppComponent{
   title = 'AngularHttpRequest';
   allProducts: Product[] = [];
+  isFetching: boolean = false;
 
   constructor(private http: HttpClient){
   }
@@ -35,6 +36,7 @@ export default class AppComponent{
   }
 
   private fetchProducts(){
+    this.isFetching = true;
     this.http.get<{[key: string]: Product}>("https://angularcourse-84f74-default-rtdb.firebaseio.com/products.json")
     .pipe(map((res)=>{
       const products = []
@@ -48,7 +50,18 @@ export default class AppComponent{
     .subscribe((products)=>{
       console.log(products);
       this.allProducts = products;
+      this.isFetching = false;
     });
+  }
+
+  onDeleteProduct(id: string){
+    this.http.delete("https://angularcourse-84f74-default-rtdb.firebaseio.com/products/"+id+".json")
+    .subscribe();
+  }
+
+  onDeleteAllProducts(){
+    this.http.delete("https://angularcourse-84f74-default-rtdb.firebaseio.com/products.json")
+    .subscribe();
   }
 }
 
