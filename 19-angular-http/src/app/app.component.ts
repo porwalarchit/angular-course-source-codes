@@ -1,7 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { map } from 'rxjs/operators';
 import { Product } from './model/products';
+import { ProductService } from './service/products.service';
 
 
 @Component({
@@ -9,59 +8,40 @@ import { Product } from './model/products';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export default class AppComponent{
+export default class AppComponent {
   title = 'AngularHttpRequest';
   allProducts: Product[] = [];
   isFetching: boolean = false;
 
-  constructor(private http: HttpClient){
+  constructor(private prodService: ProductService) {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.fetchProducts();
   }
 
-  onProductsFetch(){
+  onProductsFetch() {
     this.fetchProducts();
   }
 
-  onProductCreate(products: [pName: string, desc: string, price: string]){
-    console.log(products);
-    const headers = new HttpHeaders({'myHeader': 'Archit'})
-    this.http.post<{name: string}>
-    ("https://angularcourse-84f74-default-rtdb.firebaseio.com/products.json", products, {headers: headers})
-    .subscribe((res)=>{
-      console.log(res);
-    });
+  onProductCreate(products: [pName: string, desc: string, price: string]) {
+    this.prodService.createProduct(products);
   }
 
-  private fetchProducts(){
+  private fetchProducts() {
     this.isFetching = true;
-    this.http.get<{[key: string]: Product}>("https://angularcourse-84f74-default-rtdb.firebaseio.com/products.json")
-    .pipe(map((res)=>{
-      const products = []
-      for(const key in res){
-        if(res.hasOwnProperty(key)){
-          products.push({...res[key], id: key})
-        }
-      }
-      return products;
-    }))
-    .subscribe((products)=>{
-      console.log(products);
+    this.prodService.fetchProduct().subscribe((products)=>{
       this.allProducts = products;
       this.isFetching = false;
-    });
+    })
   }
 
-  onDeleteProduct(id: string){
-    this.http.delete("https://angularcourse-84f74-default-rtdb.firebaseio.com/products/"+id+".json")
-    .subscribe();
+  onDeleteProduct(id: string) {
+    this.prodService.deleteProduct(id);
   }
 
-  onDeleteAllProducts(){
-    this.http.delete("https://angularcourse-84f74-default-rtdb.firebaseio.com/products.json")
-    .subscribe();
+  onDeleteAllProducts() {
+    this.prodService.deleteAllProducts();
   }
 }
 
