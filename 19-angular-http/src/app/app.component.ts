@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { Product } from './model/products';
 
 
 @Component({
@@ -9,18 +11,44 @@ import { Component } from '@angular/core';
 })
 export default class AppComponent{
   title = 'AngularHttpRequest';
+  allProducts: Product[] = [];
 
   constructor(private http: HttpClient){
+  }
 
+  ngOnInit(){
+    this.fetchProducts();
+  }
+
+  onProductsFetch(){
+    this.fetchProducts();
   }
 
   onProductCreate(products: [pName: string, desc: string, price: string]){
     console.log(products);
-    this.http.post("https://angularcourse-84f74-default-rtdb.firebaseio.com/products.json", products)
+    const headers = new HttpHeaders({'myHeader': 'Archit'})
+    this.http.post<{name: string}>
+    ("https://angularcourse-84f74-default-rtdb.firebaseio.com/products.json", products, {headers: headers})
     .subscribe((res)=>{
       console.log(res);
     });
   }
-}
 
+  private fetchProducts(){
+    this.http.get<{[key: string]: Product}>("https://angularcourse-84f74-default-rtdb.firebaseio.com/products.json")
+    .pipe(map((res)=>{
+      const products = []
+      for(const key in res){
+        if(res.hasOwnProperty(key)){
+          products.push({...res[key], id: key})
+        }
+      }
+      return products;
+    }))
+    .subscribe((products)=>{
+      console.log(products);
+      this.allProducts = products;
+    });
+  }
+}
 

@@ -33,19 +33,15 @@
             <th>Price</th>
             <th></th>
           </tr>
-          <tr>
-            <td>1</td>
-            <td>iPhone</td>
-            <td>iPhone Pro 11</td>
-            <td>$1299</td>
-            <td><button class="btn-delete">Delete</button></td>
+          <tr *ngFor="let prod of allProducts; index as i">
+            <td>{{i+1}}</td>
+            <td>{{prod.pName}}</td>
+            <td>{{prod.desc}}</td>
+            <td>$ {{prod.price}}</td>
           </tr>
         </table>
+        <input type="submit" value="Fetch Product" (click)="onProductsFetch()">
         <hr>
-        <div class="action-btn-container">
-          <button class="btn-fetch">Fetch Product</button>
-          <button class="btn-clear">Clear Product</button>
-        </div>
       </div>
     </div>
   </div>
