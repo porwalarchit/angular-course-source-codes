@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, map } from "rxjs/operators";
 import { Product } from '../model/products';
@@ -27,7 +27,16 @@ export class ProductService {
 
     // fetch Products from database
     fetchProduct(): Observable<any>{
-        return this.http.get<{ [key: string]: Product; }>("https://angularcourse-84f74-default-rtdb.firebaseio.com/products.json")
+        const header = new HttpHeaders()
+        .set('content-type', 'application/json')
+        .set('Access-Control-Allow-Origin', '*')
+
+        const params = new HttpParams()
+        .set('print', 'pretty')
+        .set('pageNum', 1);
+
+        return this.http.get<{ [key: string]: Product; }>("https://angularcourse-84f74-default-rtdb.firebaseio.com/products.json", 
+        {'headers': header, params: params})
             .pipe(map((res) => {
                 const products = [];
                 for (const key in res) {
@@ -44,7 +53,10 @@ export class ProductService {
 
     // Delete Products from database
     deleteProduct(id: string) {
-        this.http.delete("https://angularcourse-84f74-default-rtdb.firebaseio.com/products/" + id + ".json")
+        let header = new HttpHeaders();
+        header = header.append('myHeader1', 'Value1')
+        header = header.append('myHeader2', 'Value2')
+        this.http.delete("https://angularcourse-84f74-default-rtdb.firebaseio.com/products/" + id + ".json", {'headers': header})
       .subscribe();
     }
 
