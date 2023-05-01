@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Product } from './model/products';
 import { ProductService } from './service/products.service';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -12,6 +13,9 @@ export default class AppComponent {
   title = 'AngularHttpRequest';
   allProducts: Product[] = [];
   isFetching: boolean = false;
+  @ViewChild('productsForm') form: NgForm;
+  editMode: boolean = false;
+  currProductId: string;
 
   constructor(private prodService: ProductService) {
   }
@@ -24,8 +28,11 @@ export default class AppComponent {
     this.fetchProducts();
   }
 
-  onProductCreate(products: [pName: string, desc: string, price: string]) {
-    this.prodService.createProduct(products);
+  onProductCreate(products: {pName: string, desc: string, price: string}) {
+    if(!this.editMode)
+      this.prodService.createProduct(products);
+    else
+      this.prodService.updateProduct(this.currProductId, products);
   }
 
   private fetchProducts() {
@@ -42,6 +49,22 @@ export default class AppComponent {
 
   onDeleteAllProducts() {
     this.prodService.deleteAllProducts();
+  }
+
+  onEditClicked(id: string){
+    this.currProductId = id;
+    // Get the product based on the id.
+    let currProduct = this.allProducts.find((p)=>{return p.id === id});
+
+    // Populate the form with the product details.
+    this.form.setValue({
+      pName: currProduct.pName,
+      desc: currProduct.desc,
+      price: currProduct.price
+    });
+
+    // Change the button value to update product.
+    this.editMode = true;
   }
 }
 

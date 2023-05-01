@@ -12,7 +12,7 @@ export class ProductService {
     }
 
     // Create Product in Database
-    createProduct(products: [pName: string, desc: string, price: string]) {
+    createProduct(products: {pName: string, desc: string, price: string}) {
         console.log(products);
         const headers = new HttpHeaders({ 'myHeader': 'Archit' })
         this.http.post<{ name: string }>
@@ -46,5 +46,10 @@ export class ProductService {
     deleteAllProducts() {
         this.http.delete("https://angularcourse-84f74-default-rtdb.firebaseio.com/products.json")
       .subscribe();
+    }
+
+    updateProduct(id: string, value: Product){
+        this.http.put("https://angularcourse-84f74-default-rtdb.firebaseio.com/products/" + id + ".json", value)
+        .subscribe();
     }
 }
