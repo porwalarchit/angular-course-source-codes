@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { map } from "rxjs/operators";
+import { catchError, map } from "rxjs/operators";
 import { Product } from '../model/products';
-import { Observable } from "rxjs";
+import { Observable, Subject, throwError } from "rxjs";
 
 
 @Injectable({ providedIn: "root" })
 export class ProductService {
+    error = new Subject<string>()
     constructor(private http: HttpClient) {
 
     }
@@ -19,6 +20,8 @@ export class ProductService {
             ("https://angularcourse-84f74-default-rtdb.firebaseio.com/products.json", products, { headers: headers })
             .subscribe((res) => {
                 console.log(res);
+            }, (err)=>{
+                this.error.next(err.message);
             });
     }
 
@@ -33,6 +36,9 @@ export class ProductService {
                     }
                 }
                 return products;
+            }), catchError((err)=>{
+                // write the logic for logging error
+                return throwError(err);
             }));
     }
 

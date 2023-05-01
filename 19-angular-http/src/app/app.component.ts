@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Product } from './model/products';
 import { ProductService } from './service/products.service';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -16,12 +17,17 @@ export default class AppComponent {
   @ViewChild('productsForm') form: NgForm;
   editMode: boolean = false;
   currProductId: string;
+  errorMessage: string = null;
+  errorSub: Subscription;
 
   constructor(private prodService: ProductService) {
   }
 
   ngOnInit() {
     this.fetchProducts();
+    this.errorSub = this.prodService.error.subscribe((message)=>{
+      this.errorMessage = message;
+    })
   }
 
   onProductsFetch() {
@@ -40,6 +46,9 @@ export default class AppComponent {
     this.prodService.fetchProduct().subscribe((products)=>{
       this.allProducts = products;
       this.isFetching = false;
+    }, (err)=>{
+      this.errorMessage = err.message;
+      console.log(this.errorMessage);
     })
   }
 
@@ -65,6 +74,10 @@ export default class AppComponent {
 
     // Change the button value to update product.
     this.editMode = true;
+  }
+
+  ngOnDestroy(){
+    this.errorSub.unsubscribe();
   }
 }
 
