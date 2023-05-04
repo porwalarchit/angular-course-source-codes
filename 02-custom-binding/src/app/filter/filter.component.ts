@@ -22,6 +22,6 @@ export class FilterComponent implements OnInit {
 
   onRadioButtonSelectionChanged(){
     this.filterRadioButtonSelectionChanged.emit(this.selectedRadioButtonValue);
-    // console.log(this.selectedRadioButtonValue);
+    console.log(this.selectedRadioButtonValue);
   }
 }

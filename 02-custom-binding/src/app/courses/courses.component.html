@@ -1,7 +1,6 @@
 <div>
     <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
-    <app-filter [total]="getTotalCourses()" [free]="getTotalFreeCourses()"
-        [premium]="getTotalPremiumCourses()"
+    <app-filter [total]="getTotalCourses()" [free]="getTotalFreeCourses()" [premium]="getTotalPremiumCourses()"
         (filterRadioButtonSelectionChanged)="onFilterRadioButtonChanged($event)"></app-filter>
 </div>
 
