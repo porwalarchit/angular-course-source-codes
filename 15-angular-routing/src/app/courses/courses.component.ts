@@ -14,10 +14,10 @@ export class CoursesComponent implements OnInit {
   courses = [];
 
   ngOnInit(): void {
-    // this.courses = this.coursesService.courses;
-    // this.coursesService.getAllCourses().then((data)=>{
-    //   this.courses = data;
-    // })
+    this.courses = this.coursesService.courses;
+    this.coursesService.getAllCourses().then((data)=>{
+      this.courses = data;
+    })
 
     this.courses = this.route.snapshot.data['courses'];
     

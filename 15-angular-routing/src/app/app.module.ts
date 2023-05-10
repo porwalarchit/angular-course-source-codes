@@ -15,6 +15,11 @@ import { CourseGuardService } from './course-guard.service';
 import { AuthService } from './auth.service';
 import { CanDeactivateGuardService } from './candeactivate-guard.service';
 import { CourseResolveService } from './course-resolve.service';
+import { HomeRouteService } from './canActivateGuard.service';
+import { LoginComponent } from './login/login.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoadingInterceptor } from './loading.interceptor';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 @NgModule({
@@ -26,13 +31,18 @@ import { CourseResolveService } from './course-resolve.service';
     CoursesComponent,
     CourseComponent,
     ErrorComponent,
+    LoginComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule
   ],
-  providers: [CoursesService, CourseGuardService, AuthService, CanDeactivateGuardService, CourseResolveService],
+  providers: [{
+      provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
+    }, 
+  CoursesService, CourseGuardService, AuthService, CanDeactivateGuardService, CourseResolveService, HomeRouteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

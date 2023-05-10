@@ -19,7 +19,6 @@ export class AppComponent {
     this.activatedRoute.fragment.subscribe((value)=>{
       this.jumpTo(value);
     })
-
     this.router.events.subscribe((routerEvent)=>{
       if(routerEvent instanceof NavigationStart){
         this.displayLoadingIndicator = true;
@@ -36,9 +35,11 @@ export class AppComponent {
 
   login(){
     this.authService.login();
+    this.router.navigate(['']);
   }
 
   logout(){
     this.authService.logout();
+    this.router.navigate(['accessdenied']);
   }
 }
